@@ -30,13 +30,6 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: true,
         },
       },
-      confirmPassword: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notEmpty: true,
-        },
-      },
       phone: {
         type: DataTypes.STRING,
         allowNull: false,
