@@ -46,4 +46,15 @@ const registerSchema = Joi.object({
     }),
 });
 
+const loginSchema = Joi.object({
+  username: Joi.string().required().messages({
+    "string.empty": "Username is required",
+  }),
+  password: Joi.string().required().messages({
+    "string.empty": "Password is required",
+  }),
+});
+
 exports.validateRegister = validate(registerSchema);
+
+exports.validateLogin = validate(loginSchema);

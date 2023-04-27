@@ -7,12 +7,16 @@ const app = express();
 const notFoundMiddleware = require("./middlewares/notFound");
 const errorMiddleware = require("./middlewares/error");
 const userRoute = require("./routes/user-route");
+const adminRoute = require("./routes/admin-route");
+
+// const { sequelize } = require("./models");
+// sequelize.sync({force: true})
 
 app.use(cors());
 app.use(express.json());
 
 app.use("/user", userRoute);
-app.use("/admin", () => {});
+app.use("/admin", adminRoute);
 
 app.use(errorMiddleware);
 app.use(notFoundMiddleware);
