@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const { Admin, User } = require("../models");
+const { Admin, User, Infomation } = require("../models");
 const createError = require("../utils/create-error");
 const { validateLogin } = require("../validators/authAdmin-validate");
 
@@ -40,13 +40,26 @@ exports.loginAdmin = async (req, res, next) => {
   }
 };
 
-exports.getAllUserInfo = async (req, res, next) => {
+exports.getAllUser = async (req, res, next) => {
   try {
     const user = await User.findAll({
       attributes: { exclude: ["password"] },
     });
 
     res.status(200).json({ user });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getUserInfo = async (req, res, next) => {
+  try {
+    const info = await Infomation.findAll({
+      where: {
+        userId: req.params,
+      },
+    });
+    res.status(200).json({ info });
   } catch (err) {
     next(err);
   }
